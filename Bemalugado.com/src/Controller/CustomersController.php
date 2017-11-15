@@ -2,7 +2,7 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
-
+use Cake\Event\Event;
 /**
  * Customers Controller
  *
@@ -18,6 +18,11 @@ class CustomersController extends AppController
      *
      * @return \Cake\Http\Response|void
      */
+    public function beforeFilter(Event $event)
+    {
+        parent::beforeFilter($event);
+        $this->Auth->allow(['add', 'logout']);
+    }
     public function index()
     {
         $customers = $this->paginate($this->Customers);
@@ -33,6 +38,22 @@ class CustomersController extends AppController
      * @return \Cake\Http\Response|void
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
+    public function login(){
+        if($this->request->is('post')){
+            $user = $this->Auth->identify();
+            if($user){
+                $this->Auth->setCustomer($user);
+                return $this->redirect($this->Auth->redirectUrl());
+            }
+            $this->Flash->error(__("Usuário invalido, Tente novamente"));
+        }
+    }
+
+    public function logout(){
+
+        return $this->redirect($this->Auth->logout());
+    }
+
     public function view($id = null)
     {
         $customer = $this->Customers->get($id, [
