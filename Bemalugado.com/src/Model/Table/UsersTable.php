@@ -5,19 +5,19 @@ use Cake\ORM\Query;
 use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
 use Cake\Validation\Validator;
-
+use Cake\Event\Event;
 /**
- * Customers Model
+ * Users Model
  *
- * @method \App\Model\Entity\Customer get($primaryKey, $options = [])
- * @method \App\Model\Entity\Customer newEntity($data = null, array $options = [])
- * @method \App\Model\Entity\Customer[] newEntities(array $data, array $options = [])
- * @method \App\Model\Entity\Customer|bool save(\Cake\Datasource\EntityInterface $entity, $options = [])
- * @method \App\Model\Entity\Customer patchEntity(\Cake\Datasource\EntityInterface $entity, array $data, array $options = [])
- * @method \App\Model\Entity\Customer[] patchEntities($entities, array $data, array $options = [])
- * @method \App\Model\Entity\Customer findOrCreate($search, callable $callback = null, $options = [])
+ * @method \App\Model\Entity\User get($primaryKey, $options = [])
+ * @method \App\Model\Entity\User newEntity($data = null, array $options = [])
+ * @method \App\Model\Entity\User[] newEntities(array $data, array $options = [])
+ * @method \App\Model\Entity\User|bool save(\Cake\Datasource\EntityInterface $entity, $options = [])
+ * @method \App\Model\Entity\User patchEntity(\Cake\Datasource\EntityInterface $entity, array $data, array $options = [])
+ * @method \App\Model\Entity\User[] patchEntities($entities, array $data, array $options = [])
+ * @method \App\Model\Entity\User findOrCreate($search, callable $callback = null, $options = [])
  */
-class CustomersTable extends Table
+class UsersTable extends Table
 {
 
     /**
@@ -30,10 +30,9 @@ class CustomersTable extends Table
     {
         parent::initialize($config);
 
-        $this->setTable('customers');
+        $this->setTable('users');
         $this->setDisplayField('name');
         $this->setPrimaryKey('id');
-
         $this->hasMany('Properties', [
                 'foreignKey' => 'id_customer_fk'
             ]);

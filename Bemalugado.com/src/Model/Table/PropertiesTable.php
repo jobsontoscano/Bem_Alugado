@@ -35,7 +35,7 @@ class PropertiesTable extends Table
         $this->setPrimaryKey('id');
 
         $this->belongsTo('Customers',[
-           'foreignKey' => 'id_customers_fk',
+           'foreignKey' => 'id_users_fk',
            'joinType' => 'INNER'
         ]);
         $this->belongsTo('Contracts',[

@@ -31,7 +31,7 @@ CREATE TABLE `contracts` (
   PRIMARY KEY (`id`),
   KEY `id_customer_fk` (`id_customer`),
   KEY `id_propertie_fk` (`id_propertie`),
-  CONSTRAINT `id_customer_fk` FOREIGN KEY (`id_customer`) REFERENCES `customers` (`id`),
+  CONSTRAINT `id_customer_fk` FOREIGN KEY (`id_customer`) REFERENCES `users` (`id`),
   CONSTRAINT `id_propertie_fk` FOREIGN KEY (`id_propertie`) REFERENCES `properties` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -47,13 +47,13 @@ INSERT INTO `contracts` VALUES (2,1,1,'2017-11-15 15:18:00','2017-11-15 15:18:00
 UNLOCK TABLES;
 
 --
--- Table structure for table `customers`
+-- Table structure for table `users`
 --
 
-DROP TABLE IF EXISTS `customers`;
+DROP TABLE IF EXISTS `users`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `customers` (
+CREATE TABLE `users` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(80) NOT NULL,
   `username` varchar(20) NOT NULL,
@@ -64,13 +64,13 @@ CREATE TABLE `customers` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `customers`
+-- Dumping data for table `users`
 --
 
-LOCK TABLES `customers` WRITE;
-/*!40000 ALTER TABLE `customers` DISABLE KEYS */;
-INSERT INTO `customers` VALUES (1,'Jobson','job','job123','jjortb@gmail.com'),(2,'João Felino','Felino','123456','Felino@gmail.com'),(3,'kaio','kai','$2y$10$HKOvsPZnpjVhpl3i38/Ul.VMSxE0GIix3qTl2FA8ZAJJysH.mDUf.','kaio@gmail.com'),(4,'jobinho','obinho','$2y$10$Nw0urSlQN70qd95oldkiNuUzG8BGgtUzwufk0kegkQXa3RWieUeuy','jjortb2@gmail.com');
-/*!40000 ALTER TABLE `customers` ENABLE KEYS */;
+LOCK TABLES `users` WRITE;
+/*!40000 ALTER TABLE `users` DISABLE KEYS */;
+INSERT INTO `users` VALUES (1,'Jobson','job','job123','jjortb@gmail.com'),(2,'João Felino','Felino','123456','Felino@gmail.com'),(3,'kaio','kai','$2y$10$HKOvsPZnpjVhpl3i38/Ul.VMSxE0GIix3qTl2FA8ZAJJysH.mDUf.','kaio@gmail.com'),(4,'jobinho','obinho','$2y$10$Nw0urSlQN70qd95oldkiNuUzG8BGgtUzwufk0kegkQXa3RWieUeuy','jjortb2@gmail.com');
+/*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -94,8 +94,8 @@ CREATE TABLE `properties` (
   `descrição` varchar(1200) NOT NULL,
   `status` tinyint(1) NOT NULL,
   PRIMARY KEY (`id`),
-  KEY `id_customers_fk` (`id_customer`),
-  CONSTRAINT `id_customers_fk` FOREIGN KEY (`id_customer`) REFERENCES `customers` (`id`)
+  KEY `id_users_fk` (`id_customer`),
+  CONSTRAINT `id_users_fk` FOREIGN KEY (`id_customer`) REFERENCES `users` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 

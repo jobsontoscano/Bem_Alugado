@@ -1,18 +1,17 @@
 <?php
 /**
  * @var \App\View\AppView $this
- * @var \App\Model\Entity\Customer[]|\Cake\Collection\CollectionInterface $customers
+ * @var \App\Model\Entity\User[]|\Cake\Collection\CollectionInterface $users
  */
 ?>
 <nav class="large-3 medium-4 columns" id="actions-sidebar">
     <ul class="side-nav">
         <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Html->link(__('New Customer'), ['action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('Login'), ['action' => 'login']) ?></li>
+        <li><?= $this->Html->link(__('New User'), ['action' => 'add']) ?></li>
     </ul>
 </nav>
-<div class="customers index large-9 medium-8 columns content">
-    <h3><?= __('Customers') ?></h3>
+<div class="users index large-9 medium-8 columns content">
+    <h3><?= __('Users') ?></h3>
     <table cellpadding="0" cellspacing="0">
         <thead>
             <tr>
@@ -25,17 +24,17 @@
             </tr>
         </thead>
         <tbody>
-            <?php foreach ($customers as $customer): ?>
+            <?php foreach ($users as $user): ?>
             <tr>
-                <td><?= $this->Number->format($customer->id) ?></td>
-                <td><?= h($customer->name) ?></td>
-                <td><?= h($customer->username) ?></td>
-                <td><?= h($customer->password) ?></td>
-                <td><?= h($customer->email) ?></td>
+                <td><?= $this->Number->format($user->id) ?></td>
+                <td><?= h($user->name) ?></td>
+                <td><?= h($user->username) ?></td>
+                <td><?= h($user->password) ?></td>
+                <td><?= h($user->email) ?></td>
                 <td class="actions">
-                    <?= $this->Html->link(__('View'), ['action' => 'view', $customer->id]) ?>
-                    <?= $this->Html->link(__('Edit'), ['action' => 'edit', $customer->id]) ?>
-                    <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $customer->id], ['confirm' => __('Are you sure you want to delete # {0}?', $customer->id)]) ?>
+                    <?= $this->Html->link(__('View'), ['action' => 'view', $user->id]) ?>
+                    <?= $this->Html->link(__('Edit'), ['action' => 'edit', $user->id]) ?>
+                    <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $user->id], ['confirm' => __('Are you sure you want to delete # {0}?', $user->id)]) ?>
                 </td>
             </tr>
             <?php endforeach; ?>

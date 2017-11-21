@@ -35,7 +35,7 @@ class ContractsTable extends Table
         $this->setPrimaryKey('id');
 
         $this->belongsTo('Customers',[
-            'foreignKey' => 'id_customer_fk',
+            'foreignKey' => 'id_users_fk',
             'joinType' => 'INNER'
             ]);
         $this->belongsTo('Properties', [

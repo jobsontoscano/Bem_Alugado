@@ -2,11 +2,9 @@
 namespace App\Model\Entity;
 
 use Cake\ORM\Entity;
-use Cake\Event\Event;
 use Cake\Auth\DefaultPasswordHasher;
-
 /**
- * Customer Entity
+ * User Entity
  *
  * @property int $id
  * @property string $name
@@ -14,7 +12,7 @@ use Cake\Auth\DefaultPasswordHasher;
  * @property string $password
  * @property string $email
  */
-class Customer extends Entity
+class User extends Entity
 {
 
     /**
