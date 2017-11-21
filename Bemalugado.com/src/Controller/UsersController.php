@@ -3,6 +3,7 @@ namespace App\Controller;
 
 use App\Controller\AppController;
 use Cake\Event\Event;
+use Cake\Mailer\Email;
 /**
  * Users Controller
  *
@@ -67,9 +68,14 @@ class UsersController extends AppController
         $user = $this->Users->newEntity();
         if ($this->request->is('post')) {
             $user = $this->Users->patchEntity($user, $this->request->getData());
+
             if ($this->Users->save($user)) {
                 $this->Flash->success(__('The user has been saved.'));
-
+                $email = new Email('default');
+                $email->from(['jjortb@gmail.com' => 'Meu Site'])
+                        ->to($user->email)
+                        ->subject('Assunto')
+                        ->send('Minha mensagem');
                 return $this->redirect(['action' => 'index']);
             }
             $this->Flash->error(__('The user could not be saved. Please, try again.'));
