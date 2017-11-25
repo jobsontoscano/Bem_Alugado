@@ -36,11 +36,11 @@ class UsersController extends AppController
             $this->Flash->error(__("Usuário invalido, Tente novamente"));
         }
     }
-    public function logout(){
 
+        public function logout()
+    {
         return $this->redirect($this->Auth->logout());
     }
-
     /**
      * View method
      *
@@ -71,11 +71,22 @@ class UsersController extends AppController
 
             if ($this->Users->save($user)) {
                 $this->Flash->success(__('The user has been saved.'));
+            // Envio de email Basico
                 $email = new Email('default');
-                $email->from(['jjortb@gmail.com' => 'Meu Site'])
+                $email->from(['jjortb@gmail.com' => 'BemAlugado.com'])
+                        ->emailFormat('html')
                         ->to($user->email)
-                        ->subject('Assunto')
-                        ->send('Minha mensagem');
+                        ->template('default', 'cadastro_user')
+                        ->subject('Cadastro [Bemalugado.com]')
+                        ->viewVars(['name' => $user->name])
+                        ->attachments(array(
+                            'logo_email.png' => array(
+                                'file' => WWW_ROOT.'img/logo.png',
+                                'mimetype' => 'image/png',
+                                'contentId' => 'logo')
+                            ))
+                        ->send();
+
                 return $this->redirect(['action' => 'index']);
             }
             $this->Flash->error(__('The user could not be saved. Please, try again.'));

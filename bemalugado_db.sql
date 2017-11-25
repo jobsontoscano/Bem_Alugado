@@ -42,7 +42,6 @@ CREATE TABLE `contracts` (
 
 LOCK TABLES `contracts` WRITE;
 /*!40000 ALTER TABLE `contracts` DISABLE KEYS */;
-INSERT INTO `contracts` VALUES (2,1,1,'2017-11-15 15:18:00','2017-11-15 15:18:00'),(3,2,1,'2017-01-03 10:59:00','2017-11-15 15:27:00');
 /*!40000 ALTER TABLE `contracts` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -69,7 +68,6 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'Jobson','job','job123','jjortb@gmail.com'),(2,'João Felino','Felino','123456','Felino@gmail.com'),(3,'kaio','kai','$2y$10$HKOvsPZnpjVhpl3i38/Ul.VMSxE0GIix3qTl2FA8ZAJJysH.mDUf.','kaio@gmail.com'),(4,'jobinho','obinho','$2y$10$Nw0urSlQN70qd95oldkiNuUzG8BGgtUzwufk0kegkQXa3RWieUeuy','jjortb2@gmail.com');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -105,7 +103,6 @@ CREATE TABLE `properties` (
 
 LOCK TABLES `properties` WRITE;
 /*!40000 ALTER TABLE `properties` DISABLE KEYS */;
-INSERT INTO `properties` VALUES (1,1,'Mercadinho','53431090','Pernambuco','Paulista','Pau Amarelo','Av. Dr Miguel silva',5112,'Rua de seu Bonito','40 ',1);
 /*!40000 ALTER TABLE `properties` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
