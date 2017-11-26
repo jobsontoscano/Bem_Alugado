@@ -38,6 +38,7 @@
         <tbody>
             <?php foreach ($properties as $property): ?>
             <tr>
+                <?php if($property->ativo == 1): ?>
                 <td><?= $this->Number->format($property->id) ?></td>
                 <td><?= $property->has('user') ? $this->Html->link($property->user->name, ['controller' => 'Users', 'action' => 'view', $property->user->id]) : '' ?></td>
                 <td><?= h($property->kind) ?></td>
@@ -56,6 +57,7 @@
                     <?= $this->Html->link(__('Edit'), ['action' => 'edit', $property->id]) ?>
                     <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $property->id], ['confirm' => __('Are you sure you want to delete # {0}?', $property->id)]) ?>
                 </td>
+                <?php endif; ?>
             </tr>
             <?php endforeach; ?>
         </tbody>
