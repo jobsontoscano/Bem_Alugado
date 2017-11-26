@@ -20,6 +20,9 @@ class PropertiesController extends AppController
      */
     public function index()
     {
+        $this->paginate = [
+            'contain' => ['Users', 'Contracts']
+        ];
         $properties = $this->paginate($this->Properties);
 
         $this->set(compact('properties'));
@@ -36,12 +39,25 @@ class PropertiesController extends AppController
     public function view($id = null)
     {
         $property = $this->Properties->get($id, [
-            'contain' => []
+            'contain' => ['Users', 'Contracts']
         ]);
 
         $this->set('property', $property);
         $this->set('_serialize', ['property']);
     }
+
+    public function isAuthorized($user){
+        if ($this->request->getParam('action') === 'add') {
+                return true;
+        }
+       if (in_array($this->request->getParam('action'), ['edit', 'delete'])) {
+        $propertyid = (int)$this->request->getParam('pass.0');
+        if ($this->Properties->isOwnedBy($propertyid, $user['id'])) {
+            return true;
+        }
+    }
+    return parent::isAuthorized($user);
+}
 
     /**
      * Add method
@@ -53,6 +69,7 @@ class PropertiesController extends AppController
         $property = $this->Properties->newEntity();
         if ($this->request->is('post')) {
             $property = $this->Properties->patchEntity($property, $this->request->getData());
+            $property->id_user = $this->Auth->user('id');
             if ($this->Properties->save($property)) {
                 $this->Flash->success(__('The property has been saved.'));
 
@@ -60,8 +77,9 @@ class PropertiesController extends AppController
             }
             $this->Flash->error(__('The property could not be saved. Please, try again.'));
         }
-        $customer = $this->Properties->Customers->find('list', ['imit' =>200]);
-        $this->set(compact('property', 'customer'));
+        $users = $this->Properties->Users->find('list', ['limit' => 200]);
+        $contracts = $this->Properties->Contracts->find('list', ['limit' => 200]);
+        $this->set(compact('property', 'users', 'contracts'));
         $this->set('_serialize', ['property']);
     }
 
@@ -86,7 +104,9 @@ class PropertiesController extends AppController
             }
             $this->Flash->error(__('The property could not be saved. Please, try again.'));
         }
-        $this->set(compact('property'));
+        $users = $this->Properties->Users->find('list', ['limit' => 200]);
+        $contracts = $this->Properties->Contracts->find('list', ['limit' => 200]);
+        $this->set(compact('property', 'users', 'contracts'));
         $this->set('_serialize', ['property']);
     }
 

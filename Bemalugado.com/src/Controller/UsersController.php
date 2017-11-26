@@ -87,7 +87,7 @@ class UsersController extends AppController
                             ))
                         ->send();
 
-                return $this->redirect(['action' => 'index']);
+                return $this->redirect(['action' => 'login']);
             }
             $this->Flash->error(__('The user could not be saved. Please, try again.'));
         }

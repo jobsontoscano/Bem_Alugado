@@ -60,9 +60,7 @@ class ContractsController extends AppController
             }
             $this->Flash->error(__('The contract could not be saved. Please, try again.'));
         }
-        $customer = $this->Contracts->Customers->find('list', ['limit' =>200]);
-        $propertie = $this->Contracts->Properties->find('list', ['limit' =>200]);
-        $this->set(compact('contract', 'propertie', 'customer'));
+        $this->set(compact('contract'));
         $this->set('_serialize', ['contract']);
     }
 

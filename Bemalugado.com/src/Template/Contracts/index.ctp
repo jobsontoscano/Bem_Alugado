@@ -16,7 +16,7 @@
         <thead>
             <tr>
                 <th scope="col"><?= $this->Paginator->sort('id') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('id_customer') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('id_user') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('id_propertie') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('duracao_contract') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('end_contract') ?></th>
@@ -27,7 +27,7 @@
             <?php foreach ($contracts as $contract): ?>
             <tr>
                 <td><?= $this->Number->format($contract->id) ?></td>
-                <td><?= $this->Number->format($contract->id_customer) ?></td>
+                <td><?= $this->Number->format($contract->id_user) ?></td>
                 <td><?= $this->Number->format($contract->id_propertie) ?></td>
                 <td><?= h($contract->duracao_contract) ?></td>
                 <td><?= h($contract->end_contract) ?></td>

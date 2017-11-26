@@ -11,11 +11,19 @@
         <li><?= $this->Form->postLink(__('Delete Property'), ['action' => 'delete', $property->id], ['confirm' => __('Are you sure you want to delete # {0}?', $property->id)]) ?> </li>
         <li><?= $this->Html->link(__('List Properties'), ['action' => 'index']) ?> </li>
         <li><?= $this->Html->link(__('New Property'), ['action' => 'add']) ?> </li>
+        <li><?= $this->Html->link(__('List Users'), ['controller' => 'Users', 'action' => 'index']) ?> </li>
+        <li><?= $this->Html->link(__('New User'), ['controller' => 'Users', 'action' => 'add']) ?> </li>
+        <li><?= $this->Html->link(__('List Contracts'), ['controller' => 'Contracts', 'action' => 'index']) ?> </li>
+        <li><?= $this->Html->link(__('New Contract'), ['controller' => 'Contracts', 'action' => 'add']) ?> </li>
     </ul>
 </nav>
 <div class="properties view large-9 medium-8 columns content">
     <h3><?= h($property->id) ?></h3>
     <table class="vertical-table">
+        <tr>
+            <th scope="row"><?= __('User') ?></th>
+            <td><?= $property->has('user') ? $this->Html->link($property->user->name, ['controller' => 'Users', 'action' => 'view', $property->user->id]) : '' ?></td>
+        </tr>
         <tr>
             <th scope="row"><?= __('Kind') ?></th>
             <td><?= h($property->kind) ?></td>
@@ -45,16 +53,12 @@
             <td><?= h($property->complement) ?></td>
         </tr>
         <tr>
-            <th scope="row"><?= __('Descrição') ?></th>
-            <td><?= h($property->descrição) ?></td>
+            <th scope="row"><?= __('Descricao') ?></th>
+            <td><?= h($property->descricao) ?></td>
         </tr>
         <tr>
             <th scope="row"><?= __('Id') ?></th>
             <td><?= $this->Number->format($property->id) ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('Id Customer') ?></th>
-            <td><?= $this->Number->format($property->id_customer) ?></td>
         </tr>
         <tr>
             <th scope="row"><?= __('Number') ?></th>

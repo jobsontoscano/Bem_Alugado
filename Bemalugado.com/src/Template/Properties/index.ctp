@@ -8,6 +8,10 @@
     <ul class="side-nav">
         <li class="heading"><?= __('Actions') ?></li>
         <li><?= $this->Html->link(__('New Property'), ['action' => 'add']) ?></li>
+        <li><?= $this->Html->link(__('List Users'), ['controller' => 'Users', 'action' => 'index']) ?></li>
+        <li><?= $this->Html->link(__('New User'), ['controller' => 'Users', 'action' => 'add']) ?></li>
+        <li><?= $this->Html->link(__('List Contracts'), ['controller' => 'Contracts', 'action' => 'index']) ?></li>
+        <li><?= $this->Html->link(__('New Contract'), ['controller' => 'Contracts', 'action' => 'add']) ?></li>
     </ul>
 </nav>
 <div class="properties index large-9 medium-8 columns content">
@@ -16,7 +20,7 @@
         <thead>
             <tr>
                 <th scope="col"><?= $this->Paginator->sort('id') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('id_customer') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('id_user') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('kind') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('cep') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('state') ?></th>
@@ -25,7 +29,7 @@
                 <th scope="col"><?= $this->Paginator->sort('address') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('number') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('complement') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('descrição') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('descricao') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('status') ?></th>
                 <th scope="col" class="actions"><?= __('Actions') ?></th>
             </tr>
@@ -34,7 +38,7 @@
             <?php foreach ($properties as $property): ?>
             <tr>
                 <td><?= $this->Number->format($property->id) ?></td>
-                <td><?= $this->Number->format($property->id_customer) ?></td>
+                <td><?= $property->has('user') ? $this->Html->link($property->user->name, ['controller' => 'Users', 'action' => 'view', $property->user->id]) : '' ?></td>
                 <td><?= h($property->kind) ?></td>
                 <td><?= h($property->cep) ?></td>
                 <td><?= h($property->state) ?></td>
@@ -43,7 +47,7 @@
                 <td><?= h($property->address) ?></td>
                 <td><?= $this->Number->format($property->number) ?></td>
                 <td><?= h($property->complement) ?></td>
-                <td><?= h($property->descrição) ?></td>
+                <td><?= h($property->descricao) ?></td>
                 <td><?= h($property->status) ?></td>
                 <td class="actions">
                     <?= $this->Html->link(__('View'), ['action' => 'view', $property->id]) ?>

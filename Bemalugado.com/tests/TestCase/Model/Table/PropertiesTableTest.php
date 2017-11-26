@@ -24,7 +24,10 @@ class PropertiesTableTest extends TestCase
      * @var array
      */
     public $fixtures = [
-        'app.properties'
+        'app.properties',
+        'app.users',
+        'app.constracts',
+        'app.contracts'
     ];
 
     /**

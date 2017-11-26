@@ -42,10 +42,12 @@ class AppController extends Controller
         $this->Auth->allow(['index', 'view', 'login']);
     }
 
+
     public function initialize()
     {
         $this->loadComponent('Flash');
         $this->loadComponent('Auth', [
+            'authorize' => ['Controller'],
             'loginRedirect' => [
                 'controller' => 'Properties',
                 'action' => 'index'
@@ -57,6 +59,14 @@ class AppController extends Controller
         ]);
     }
 
+    public function isAuthorized($user){
+        // Admin can access every action
+        if (isset($user['username']) && $user['username'] === 'bac') {
+            return true;
+        }
+        // Default deny
+        return false;
+    }
     /**
      * Before render callback.
      *

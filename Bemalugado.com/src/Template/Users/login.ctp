@@ -9,5 +9,6 @@
         </fieldset>
     <?= $this->Form->button(__('Login'));?>
     <?= $this->Form->end();?>
+    <?= $this->Html->link(__('Cadastre-se'),['action' => 'add'])?>
     </div>
 </center>

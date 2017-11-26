@@ -7,7 +7,7 @@ use Cake\ORM\Entity;
  * Property Entity
  *
  * @property int $id
- * @property int $id_customer
+ * @property int $id_user
  * @property string $kind
  * @property string $cep
  * @property string $state
@@ -16,8 +16,11 @@ use Cake\ORM\Entity;
  * @property string $address
  * @property int $number
  * @property string $complement
- * @property string $descrição
+ * @property string $descricao
  * @property bool $status
+ *
+ * @property \App\Model\Entity\User $user
+ * @property \App\Model\Entity\Contract $contract
  */
 class Property extends Entity
 {
@@ -32,7 +35,7 @@ class Property extends Entity
      * @var array
      */
     protected $_accessible = [
-        'id_customer' => true,
+        'id_user' => true,
         'kind' => true,
         'cep' => true,
         'state' => true,
@@ -41,7 +44,9 @@ class Property extends Entity
         'address' => true,
         'number' => true,
         'complement' => true,
-        'descrição' => true,
-        'status' => true
+        'descricao' => true,
+        'status' => true,
+        'user' => true,
+        'contract' => true
     ];
 }

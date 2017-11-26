@@ -33,12 +33,11 @@ class ContractsTable extends Table
         $this->setTable('contracts');
         $this->setDisplayField('id');
         $this->setPrimaryKey('id');
-
-        $this->belongsTo('Customers',[
-            'foreignKey' => 'id_users_fk',
+         $this->belongsTo('Users',[
+            'foreignKey' => 'id_user_fk',
             'joinType' => 'INNER'
             ]);
-        $this->belongsTo('Properties', [
+        $this->hasOne('Properties', [
             'foreignKey' => 'id_propertie_fk',
             'joinType' => 'INNER'
             ]);
@@ -57,9 +56,9 @@ class ContractsTable extends Table
             ->allowEmpty('id', 'create');
 
         $validator
-            ->integer('id_customer')
-            ->requirePresence('id_customer', 'create')
-            ->notEmpty('id_customer');
+            ->integer('id_user')
+            ->requirePresence('id_user', 'create')
+            ->notEmpty('id_user');
 
         $validator
             ->integer('id_propertie')

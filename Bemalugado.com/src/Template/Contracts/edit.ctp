@@ -21,7 +21,7 @@
     <fieldset>
         <legend><?= __('Edit Contract') ?></legend>
         <?php
-            echo $this->Form->control('id_customer');
+            echo $this->Form->control('id_user');
             echo $this->Form->control('id_propertie');
             echo $this->Form->control('duracao_contract');
             echo $this->Form->control('end_contract');

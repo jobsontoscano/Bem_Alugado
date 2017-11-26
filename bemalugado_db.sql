@@ -24,14 +24,14 @@ DROP TABLE IF EXISTS `contracts`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `contracts` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `id_customer` int(11) NOT NULL,
+  `id_user` int(11) NOT NULL,
   `id_propertie` int(11) NOT NULL,
   `duracao_contract` datetime NOT NULL,
   `end_contract` datetime NOT NULL,
   PRIMARY KEY (`id`),
-  KEY `id_customer_fk` (`id_customer`),
+  KEY `id_user_fk` (`id_user`),
   KEY `id_propertie_fk` (`id_propertie`),
-  CONSTRAINT `id_customer_fk` FOREIGN KEY (`id_customer`) REFERENCES `users` (`id`),
+  CONSTRAINT `id_user_fk` FOREIGN KEY (`id_user`) REFERENCES `users` (`id`),
   CONSTRAINT `id_propertie_fk` FOREIGN KEY (`id_propertie`) REFERENCES `properties` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -80,7 +80,7 @@ DROP TABLE IF EXISTS `properties`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `properties` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `id_customer` int(11) NOT NULL,
+  `id_user` int(11) NOT NULL,
   `kind` varchar(40) NOT NULL,
   `cep` varchar(80) NOT NULL,
   `state` varchar(50) NOT NULL,
@@ -89,11 +89,11 @@ CREATE TABLE `properties` (
   `address` varchar(100) NOT NULL,
   `number` int(11) NOT NULL,
   `complement` varchar(40) NOT NULL,
-  `descrição` varchar(1200) NOT NULL,
+  `descricao` varchar(1200) NOT NULL,
   `status` tinyint(1) NOT NULL,
   PRIMARY KEY (`id`),
-  KEY `id_users_fk` (`id_customer`),
-  CONSTRAINT `id_users_fk` FOREIGN KEY (`id_customer`) REFERENCES `users` (`id`)
+  KEY `id_users_fk` (`id_user`),
+  CONSTRAINT `id_users_fk` FOREIGN KEY (`id_user`) REFERENCES `users` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 

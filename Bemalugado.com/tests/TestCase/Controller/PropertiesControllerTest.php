@@ -16,7 +16,10 @@ class PropertiesControllerTest extends IntegrationTestCase
      * @var array
      */
     public $fixtures = [
-        'app.properties'
+        'app.properties',
+        'app.users',
+        'app.constracts',
+        'app.contracts'
     ];
 
     /**

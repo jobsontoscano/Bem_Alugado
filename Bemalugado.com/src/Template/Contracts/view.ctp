@@ -21,8 +21,8 @@
             <td><?= $this->Number->format($contract->id) ?></td>
         </tr>
         <tr>
-            <th scope="row"><?= __('Id Customer') ?></th>
-            <td><?= $this->Number->format($contract->id_customer) ?></td>
+            <th scope="row"><?= __('Id User') ?></th>
+            <td><?= $this->Number->format($contract->id_user) ?></td>
         </tr>
         <tr>
             <th scope="row"><?= __('Id Propertie') ?></th>

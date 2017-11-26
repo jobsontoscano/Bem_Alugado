@@ -7,7 +7,7 @@ use Cake\ORM\Entity;
  * Contract Entity
  *
  * @property int $id
- * @property int $id_customer
+ * @property int $id_user
  * @property int $id_propertie
  * @property \Cake\I18n\FrozenTime $duracao_contract
  * @property \Cake\I18n\FrozenTime $end_contract
@@ -25,7 +25,7 @@ class Contract extends Entity
      * @var array
      */
     protected $_accessible = [
-        'id_customer' => true,
+        'id_user' => true,
         'id_propertie' => true,
         'duracao_contract' => true,
         'end_contract' => true

@@ -33,17 +33,19 @@ class PropertiesTable extends Table
         $this->setTable('properties');
         $this->setDisplayField('id');
         $this->setPrimaryKey('id');
-
-        $this->belongsTo('Customers',[
-           'foreignKey' => 'id_users_fk',
-           'joinType' => 'INNER'
-        ]);
-        $this->belongsTo('Contracts',[
-            'foreignKey' => 'id_propertie_fk',
+        $this->belongsTo('Users',[
+            'foreignKey' => 'id_user',
             'joinType' => 'INNER'
-        ]);
+            ]);
+        $this->hasMany('Contracts', [
+            'foreignKey' => 'id_propertie',
+            'joinType' => 'INNER'
+            ]);
     }
-
+    public function isOwnedBy($propertiesid, $userId)
+    {
+        return $this->exists(['id' => $propertiesid, 'id_user' => $userId]);
+    }
     /**
      * Default validation rules.
      *
@@ -57,9 +59,9 @@ class PropertiesTable extends Table
             ->allowEmpty('id', 'create');
 
         $validator
-            ->integer('id_customer')
-            ->requirePresence('id_customer', 'create')
-            ->notEmpty('id_customer');
+            ->integer('id_user')
+            ->requirePresence('id_user', 'create')
+            ->notEmpty('id_user');
 
         $validator
             ->scalar('kind')
@@ -102,9 +104,9 @@ class PropertiesTable extends Table
             ->notEmpty('complement');
 
         $validator
-            ->scalar('descrição')
-            ->requirePresence('descrição', 'create')
-            ->notEmpty('descrição');
+            ->scalar('descricao')
+            ->requirePresence('descricao', 'create')
+            ->notEmpty('descricao');
 
         $validator
             ->boolean('status')
