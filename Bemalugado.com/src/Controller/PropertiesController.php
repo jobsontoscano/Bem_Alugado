@@ -2,6 +2,9 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
+use Cake\Event\Event;
+use Cake\Mailer\Email;
+
 
 /**
  * Properties Controller
@@ -50,7 +53,7 @@ class PropertiesController extends AppController
         if ($this->request->getParam('action') === 'add') {
                 return true;
         }
-       if (in_array($this->request->getParam('action'), ['edit', 'delete'])) {
+       if (in_array($this->request->getParam('action'), ['edit', 'delete','activate'])) {
         $propertyid = (int)$this->request->getParam('pass.0');
         if ($this->Properties->isOwnedBy($propertyid, $user['id'])) {
             return true;
@@ -64,15 +67,33 @@ class PropertiesController extends AppController
      *
      * @return \Cake\Http\Response|null Redirects on successful add, renders view otherwise.
      */
+
     public function add()
     {
         $property = $this->Properties->newEntity();
         if ($this->request->is('post')) {
             $property = $this->Properties->patchEntity($property, $this->request->getData());
             $property->id_user = $this->Auth->user('id');
-            if ($this->Properties->save($property)) {
-                $this->Flash->success(__('The property has been saved.'));
+            $property->status = 1;
+            $user = $this->request->session()->read('Auth.User');
+            $property->active_code = md5("123456abcdef");
 
+            if ($this->Properties->save($property)) {
+                $this->Flash->success(__('Email Enviado para realização de segurança, por favor verificar email'));
+                $email = new Email('default');
+                $email->from(["bemalugado.com@gmail.com" => "[BEMALUGADO.COM]"])
+                            ->emailFormat('html')
+                            ->to($user['email'])
+                            ->template('default', 'sua_propriedade')
+                            ->subject('[Bemalugado.com] Confirmação dono Imovel')
+                            ->viewVars(['nome' => $user['name'], 'active_link' => 'http://localhost:8765/properties/activate/'.$property->id.'/'. $property->active_code])
+                            ->attachments(array(
+                            'logo_email.png' => array(
+                                'file' => WWW_ROOT.'img/logo.png',
+                                'mimetype' => 'image/png',
+                                'contentId' => 'logo')
+                            ))
+                        ->send();
                 return $this->redirect(['action' => 'index']);
             }
             $this->Flash->error(__('The property could not be saved. Please, try again.'));
@@ -81,6 +102,20 @@ class PropertiesController extends AppController
         $contracts = $this->Properties->Contracts->find('list', ['limit' => 200]);
         $this->set(compact('property', 'users', 'contracts'));
         $this->set('_serialize', ['property']);
+    }
+    public function activate($propertyid = null , $code = null, $email = null){
+        $property = $this->Properties->get($propertyid);
+
+        if ($property->ativo == 1) {
+                $this->Flash->default(__('A SUA PROPRIEDADE JÁ FOI ATIVA ANTERIORMENTE'));
+        }else if($this->Properties->exists($propertyid) && ($code == $property->active_code)){
+                $user_id  = $property->id_user;
+                $this->Properties->updateAll(['ativo' => 1],['id' => $propertyid]);
+                    $this->Flash->success(__("OBRIGADO POR NOS AJUDAR A MANTER A SEGURANÇA"));
+        }else{
+                $this->Flash->error(__('PROBLEMA AO IDENTIFICAR COM LINK, ENTRE EM CONTATO COM NOSSA EQUIPE --- bemalugado.com@gmail.com'));
+        }
+            return $this->redirect('/properties/index');
     }
 
     /**

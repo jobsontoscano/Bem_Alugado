@@ -31,6 +31,7 @@
                 <th scope="col"><?= $this->Paginator->sort('complement') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('descricao') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('status') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('ativo') ?></th>
                 <th scope="col" class="actions"><?= __('Actions') ?></th>
             </tr>
         </thead>
@@ -49,6 +50,7 @@
                 <td><?= h($property->complement) ?></td>
                 <td><?= h($property->descricao) ?></td>
                 <td><?= h($property->status) ?></td>
+                <td><?= h($property->ativo) ?></td>
                 <td class="actions">
                     <?= $this->Html->link(__('View'), ['action' => 'view', $property->id]) ?>
                     <?= $this->Html->link(__('Edit'), ['action' => 'edit', $property->id]) ?>

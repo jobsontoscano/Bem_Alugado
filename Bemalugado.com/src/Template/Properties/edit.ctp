@@ -35,7 +35,6 @@
             echo $this->Form->control('number');
             echo $this->Form->control('complement');
             echo $this->Form->control('descricao');
-            echo $this->Form->control('status');
         ?>
     </fieldset>
     <?= $this->Form->button(__('Submit')) ?>
