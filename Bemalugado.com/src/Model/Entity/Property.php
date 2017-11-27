@@ -8,19 +8,19 @@ use Cake\ORM\Entity;
  *
  * @property int $id
  * @property int $id_user
+ * @property int $id_file
  * @property string $kind
- * @property string $cep
- * @property string $state
- * @property string $city
- * @property string $neighborhood
- * @property string $address
  * @property int $number
+ * @property string $state
  * @property string $complement
+ * @property string $city
  * @property string $descricao
  * @property bool $status
- *
- * @property \App\Model\Entity\User $user
- * @property \App\Model\Entity\Contract $contract
+ * @property string $address
+ * @property string $cep
+ * @property string $active_code
+ * @property bool $ativo
+ * @property string $neighborhood
  */
 class Property extends Entity
 {
@@ -36,17 +36,18 @@ class Property extends Entity
      */
     protected $_accessible = [
         'id_user' => true,
+        'id_file' => true,
         'kind' => true,
-        'cep' => true,
-        'state' => true,
-        'city' => true,
-        'neighborhood' => true,
-        'address' => true,
         'number' => true,
+        'state' => true,
         'complement' => true,
+        'city' => true,
         'descricao' => true,
         'status' => true,
-        'user' => true,
-        'contract' => true
+        'address' => true,
+        'cep' => true,
+        'active_code' => true,
+        'ativo' => true,
+        'neighborhood' => true
     ];
 }

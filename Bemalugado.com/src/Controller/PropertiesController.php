@@ -21,10 +21,15 @@ class PropertiesController extends AppController
      *
      * @return \Cake\Http\Response|void
      */
+    public function initialize(){
+        parent::initialize();
+        $this->loadModel('Files');
+
+    }
     public function index()
     {
         $this->paginate = [
-            'contain' => ['Users', 'Contracts']
+            'contain' => ['Users', 'Contracts', 'Files']
         ];
         $properties = $this->paginate($this->Properties);
 
@@ -42,7 +47,7 @@ class PropertiesController extends AppController
     public function view($id = null)
     {
         $property = $this->Properties->get($id, [
-            'contain' => ['Users', 'Contracts']
+            'contain' => ['Users', 'Contracts','Files']
         ]);
 
         $this->set('property', $property);
@@ -71,13 +76,23 @@ class PropertiesController extends AppController
     public function add()
     {
         $property = $this->Properties->newEntity();
+         $this->loadModel('Files');
         if ($this->request->is('post')) {
+            //Envio de email, para validar o imovel do usuário logado
             $property = $this->Properties->patchEntity($property, $this->request->getData());
             $property->id_user = $this->Auth->user('id');
             $property->status = 1;
             $user = $this->request->session()->read('Auth.User');
             $property->active_code = md5("123456abcdef");
 
+            //Upload de imagens
+            //$extension = pathinfo($this->request->data['image']['name'], PATHINFO_EXTENSION);
+            //$image = $this->Files->uploadAndSaveFile($this->request->data['image']['tmp_name'],'/uploads/','imovel_'.uniqid(rand(), true).'.'.$extension);
+            //if($image){
+             //   $property->id_file = $image->id;
+            //}else{
+             //   $this->Flash->error(__('Problema ao tentar Enviar imagem'));
+            //}
             if ($this->Properties->save($property)) {
                 $this->Flash->success(__('Email Enviado para realização de segurança, por favor verificar email'));
                 $email = new Email('default');

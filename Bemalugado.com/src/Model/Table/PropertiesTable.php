@@ -33,7 +33,7 @@ class PropertiesTable extends Table
         $this->setTable('properties');
         $this->setDisplayField('id');
         $this->setPrimaryKey('id');
-        $this->belongsTo('Users',[
+            $this->belongsTo('Users',[
             'foreignKey' => 'id_user',
             'joinType' => 'INNER'
             ]);
@@ -41,11 +41,12 @@ class PropertiesTable extends Table
             'foreignKey' => 'id_propertie',
             'joinType' => 'INNER'
             ]);
+        $this->hasMany('Files',[
+            'foreignKey' => 'id_file',
+            'joinType' => 'INNER'
+            ]);
     }
-    public function isOwnedBy($propertiesid, $userId)
-    {
-        return $this->exists(['id' => $propertiesid, 'id_user' => $userId]);
-    }
+
     /**
      * Default validation rules.
      *
@@ -64,34 +65,14 @@ class PropertiesTable extends Table
             ->notEmpty('id_user');
 
         $validator
+            ->integer('id_file')
+            ->requirePresence('id_file', 'create')
+            ->notEmpty('id_file');
+
+        $validator
             ->scalar('kind')
             ->requirePresence('kind', 'create')
             ->notEmpty('kind');
-
-        $validator
-            ->scalar('cep')
-            ->requirePresence('cep', 'create')
-            ->notEmpty('cep');
-
-        $validator
-            ->scalar('state')
-            ->requirePresence('state', 'create')
-            ->notEmpty('state');
-
-        $validator
-            ->scalar('city')
-            ->requirePresence('city', 'create')
-            ->notEmpty('city');
-
-        $validator
-            ->scalar('neighborhood')
-            ->requirePresence('neighborhood', 'create')
-            ->notEmpty('neighborhood');
-
-        $validator
-            ->scalar('address')
-            ->requirePresence('address', 'create')
-            ->notEmpty('address');
 
         $validator
             ->integer('number')
@@ -99,9 +80,19 @@ class PropertiesTable extends Table
             ->notEmpty('number');
 
         $validator
+            ->scalar('state')
+            ->requirePresence('state', 'create')
+            ->notEmpty('state');
+
+        $validator
             ->scalar('complement')
             ->requirePresence('complement', 'create')
             ->notEmpty('complement');
+
+        $validator
+            ->scalar('city')
+            ->requirePresence('city', 'create')
+            ->notEmpty('city');
 
         $validator
             ->scalar('descricao')
@@ -112,6 +103,31 @@ class PropertiesTable extends Table
             ->boolean('status')
             ->requirePresence('status', 'create')
             ->notEmpty('status');
+
+        $validator
+            ->scalar('address')
+            ->requirePresence('address', 'create')
+            ->notEmpty('address');
+
+        $validator
+            ->scalar('cep')
+            ->requirePresence('cep', 'create')
+            ->notEmpty('cep');
+
+        $validator
+            ->scalar('active_code')
+            ->requirePresence('active_code', 'create')
+            ->notEmpty('active_code');
+
+        $validator
+            ->boolean('ativo')
+            ->requirePresence('ativo', 'create')
+            ->notEmpty('ativo');
+
+        $validator
+            ->scalar('neighborhood')
+            ->requirePresence('neighborhood', 'create')
+            ->notEmpty('neighborhood');
 
         return $validator;
     }

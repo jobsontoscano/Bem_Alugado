@@ -28,6 +28,7 @@
             echo $this->Form->control('number');
             echo $this->Form->control('complement');
             echo $this->Form->control('descricao');
+            echo $this->Form->control('id_file', ['label' => 'Imagem do Imovel', 'type' => 'file']);
         ?>
     </fieldset>
     <?= $this->Form->button(__('Submit')) ?>
