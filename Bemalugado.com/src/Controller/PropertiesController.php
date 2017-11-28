@@ -58,12 +58,12 @@ class PropertiesController extends AppController
         if ($this->request->getParam('action') === 'add') {
                 return true;
         }
-       if (in_array($this->request->getParam('action'), ['edit', 'delete','activate'])) {
-        $propertyid = (int)$this->request->getParam('pass.0');
-        if ($this->Properties->isOwnedBy($propertyid, $user['id'])) {
-            return true;
+        if (in_array($this->request->getParam('action'), ['edit', 'delete','activate'])) {
+            $propertyid = (int)$this->request->getParam('pass.0');
+            if ($this->Properties->isOwnedBy($propertyid, $user['id'])) {
+                return true;
+            }
         }
-    }
     return parent::isAuthorized($user);
 }
 
@@ -76,23 +76,25 @@ class PropertiesController extends AppController
     public function add()
     {
         $property = $this->Properties->newEntity();
-         $this->loadModel('Files');
         if ($this->request->is('post')) {
             //Envio de email, para validar o imovel do usuário logado
             $property = $this->Properties->patchEntity($property, $this->request->getData());
             $property->id_user = $this->Auth->user('id');
-            $property->status = 1;
+            $property->status = 1; 
+            $property->ativo = 0;
             $user = $this->request->session()->read('Auth.User');
             $property->active_code = md5("123456abcdef");
 
             //Upload de imagens
-            //$extension = pathinfo($this->request->data['image']['name'], PATHINFO_EXTENSION);
-            //$image = $this->Files->uploadAndSaveFile($this->request->data['image']['tmp_name'],'/uploads/','imovel_'.uniqid(rand(), true).'.'.$extension);
-            //if($image){
-             //   $property->id_file = $image->id;
-            //}else{
-             //   $this->Flash->error(__('Problema ao tentar Enviar imagem'));
-            //}
+            $extension = pathinfo($this->request->data['id_file']['name'], PATHINFO_EXTENSION);
+            $image = $this->Files->uploadAndSaveFile($this->request->data['id_file']['tmp_name'],'/uploads/','imovel_'.uniqid(rand(), true).'.'.$extension);
+            if($image){
+                $property->id_file = $image->id;
+            }else{
+                $this->Flash->error(__('Problema ao tentar Enviar imagem'));
+            }
+         
+
             if ($this->Properties->save($property)) {
                 $this->Flash->success(__('Email Enviado para realização de segurança, por favor verificar email'));
                 $email = new Email('default');
@@ -111,11 +113,10 @@ class PropertiesController extends AppController
                         ->send();
                 return $this->redirect(['action' => 'index']);
             }
-            $this->Flash->error(__('The property could not be saved. Please, try again.'));
+            $this->Flash->error(__('erro teste'));
         }
         $users = $this->Properties->Users->find('list', ['limit' => 200]);
-        $contracts = $this->Properties->Contracts->find('list', ['limit' => 200]);
-        $this->set(compact('property', 'users', 'contracts'));
+        $this->set(compact('property', 'users'));
         $this->set('_serialize', ['property']);
     }
     public function activate($propertyid = null , $code = null, $email = null){

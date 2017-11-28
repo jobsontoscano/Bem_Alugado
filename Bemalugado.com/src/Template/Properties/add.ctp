@@ -15,7 +15,7 @@
     </ul>
 </nav>
 <div class="properties form large-9 medium-8 columns content">
-    <?= $this->Form->create($property) ?>
+    <?= $this->Form->create($property,['type' => 'file']) ?>
     <fieldset>
         <legend><?= __('Add Property') ?></legend>
         <?php

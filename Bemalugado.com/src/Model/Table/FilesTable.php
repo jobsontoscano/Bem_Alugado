@@ -61,11 +61,6 @@ class FilesTable extends Table
             ->requirePresence('path', 'create')
             ->notEmpty('path');
 
-        $validator
-            ->boolean('status')
-            ->requirePresence('status', 'create')
-            ->notEmpty('status');
-
         return $validator;
     }
 

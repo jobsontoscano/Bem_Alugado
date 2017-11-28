@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 5.7.20, for Linux (x86_64)
+-- MySQL dump 10.13  Distrib 5.7.19, for Linux (x86_64)
 --
 -- Host: localhost    Database: bemalugado_db
 -- ------------------------------------------------------
--- Server version	5.7.20-0ubuntu0.16.04.1
+-- Server version	5.7.19-0ubuntu0.16.04.1
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -56,9 +56,8 @@ CREATE TABLE `files` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
   `path` varchar(255) NOT NULL,
-  `status` tinyint(1) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -67,6 +66,7 @@ CREATE TABLE `files` (
 
 LOCK TABLES `files` WRITE;
 /*!40000 ALTER TABLE `files` DISABLE KEYS */;
+INSERT INTO `files` VALUES (1,'imovel_17479604795a1d4d3e71be14.93409993.jpg','/uploads/'),(2,'imovel_1607652015a1d4d7ebdf033.02725171.jpg','/uploads/'),(3,'imovel_2560275545a1d4e7d3b6a20.83933254.jpg','/uploads/'),(4,'imovel_13053229945a1d4eb2102ba2.65255181.jpg','/uploads/'),(5,'imovel_6387115485a1d4eceb86204.15797860.jpg','/uploads/'),(6,'imovel_5859047145a1d51bbc3a500.68712040.jpg','/uploads/'),(7,'imovel_21151865525a1d51fb24cd65.17276968.jpg','/uploads/'),(8,'imovel_8115036605a1d5227c645f3.28518787.jpg','/uploads/'),(9,'imovel_756051795a1d53b4743555.85583805.jpg','/uploads/'),(10,'imovel_15977685765a1d550eb13b17.51259144.jpg','/uploads/');
 /*!40000 ALTER TABLE `files` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -98,7 +98,7 @@ CREATE TABLE `properties` (
   KEY `file_fk` (`id_file`),
   CONSTRAINT `file_fk` FOREIGN KEY (`id_file`) REFERENCES `files` (`id`),
   CONSTRAINT `user_fk` FOREIGN KEY (`id_user`) REFERENCES `users` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -107,6 +107,7 @@ CREATE TABLE `properties` (
 
 LOCK TABLES `properties` WRITE;
 /*!40000 ALTER TABLE `properties` DISABLE KEYS */;
+INSERT INTO `properties` VALUES (1,14,9,'hfdh',123,'asfasf','123','asfsaf','123',1,'asfsaf','asfasf','6f3b8ded65bd7a4db11625ac84e579bb',0,'asfsaf'),(2,15,10,'fasf',123,'asfasf','123','asfsaf','123',1,'asfsaf1','asfasf','6f3b8ded65bd7a4db11625ac84e579bb',1,'asfsaf');
 /*!40000 ALTER TABLE `properties` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -124,7 +125,7 @@ CREATE TABLE `users` (
   `password` varchar(70) NOT NULL,
   `email` varchar(40) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -133,6 +134,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
+INSERT INTO `users` VALUES (13,'bemalugado.com','bac','$2y$10$EIZq/5gN4Q3ELqOMzMjhkeq1.OIiLsASpsucLh2u4a227D4FXjnPK','bemalugado.com@gmail.com'),(14,'gabriel','gabs','$2y$10$NjEjLfcLiydTWJsatxTi1eNx2s0lT4zwZ9YkSO1bKWzFsNeEM5K.G','gabriel-silva_2011@hotmail.com'),(15,'jobson','jobson','$2y$10$.EnMpnwhmAtiWNfNZhLQceYb4yyZNrkgtoXFrh0z769ndIwf7dAZ2','jjortb@gmail.com');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -145,4 +147,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-11-26 20:00:12
+-- Dump completed on 2017-11-28  9:35:19

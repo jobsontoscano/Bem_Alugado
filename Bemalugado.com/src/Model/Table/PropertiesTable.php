@@ -41,12 +41,16 @@ class PropertiesTable extends Table
             'foreignKey' => 'id_propertie',
             'joinType' => 'INNER'
             ]);
-        $this->hasMany('Files',[
-            'foreignKey' => 'id_file',
-            'joinType' => 'INNER'
-            ]);
+       // $this->hasMany('Files',[
+        //    'foreignKey' => 'id_file',
+         //   'joinType' => 'INNER'
+            $this->belongsTo('Files')
+            ->setForeignKey('id_file') // nome da coluna da chave estrangeira
+            ->setProperty('id_file'); //nome da propriedade que será criada no modelo
     }
-
+    public function isOwnedBy($properties, $userId){
+        return $this->exists(['id' => $properties, 'id_user' => $userId]);
+    }
     /**
      * Default validation rules.
      *
