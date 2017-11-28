@@ -64,8 +64,8 @@ class PropertiesController extends AppController
                 return true;
             }
         }
-    return parent::isAuthorized($user);
-}
+        return parent::isAuthorized($user);
+    }
 
     /**
      * Add method

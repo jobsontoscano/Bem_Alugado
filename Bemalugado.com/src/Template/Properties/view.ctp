@@ -18,7 +18,7 @@
     </ul>
 </nav>
 <div class="properties view large-9 medium-8 columns content">
-    <h3><?= h($property->id) ?></h3>
+    <img src="<?=$property->id_file['path'].$property->id_file['name']?>">
     <table class="vertical-table">
         <tr>
             <th scope="row"><?= __('User') ?></th>

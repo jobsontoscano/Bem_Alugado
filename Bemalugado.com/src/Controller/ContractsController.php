@@ -25,6 +25,19 @@ class ContractsController extends AppController
         $this->set(compact('contracts'));
         $this->set('_serialize', ['contracts']);
     }
+    public function isAuthorized($user){
+        if ($this->request->getParam('action') === 'add') {
+                return true;
+        }
+        if (in_array($this->request->getParam('action'), ['edit', 'delete','activate'])) {
+            $propertyid = (int)$this->request->getParam('pass.0');
+            if ($this->Properties->isOwnedBy($propertyid, $user['id'])) {
+                return true;
+            }
+        }
+        return parent::isAuthorized($user);
+    }
+
 
     /**
      * View method
