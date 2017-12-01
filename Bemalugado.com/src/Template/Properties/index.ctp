@@ -7,11 +7,8 @@
 <nav class="large-3 medium-4 columns" id="actions-sidebar">
     <ul class="side-nav">
         <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Html->link(__('New Property'), ['action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('List Users'), ['controller' => 'Users', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New User'), ['controller' => 'Users', 'action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('List Contracts'), ['controller' => 'Contracts', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Contract'), ['controller' => 'Contracts', 'action' => 'add']) ?></li>
+        <li><?= $this->Html->link(__('Cadastre sua Propriedade'), ['action' => 'add']) ?></li>
+        <li><?= $this->Html->link(__('Cadastro'), ['controller' => 'Pages', 'action' => 'display']) ?></li>
     </ul>
 </nav>
 <div class="properties index large-9 medium-8 columns content">
@@ -20,18 +17,6 @@
         <thead>
             <tr>
                 <th scope="col"><?= $this->Paginator->sort('id') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('id_user') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('kind') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('cep') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('state') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('city') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('neighborhood') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('address') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('number') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('complement') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('descricao') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('status') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('ativo') ?></th>
                 <th scope="col" class="actions"><?= __('Actions') ?></th>
             </tr>
         </thead>
@@ -39,19 +24,8 @@
             <?php foreach ($properties as $property): ?>
             <tr>
                 <?php if($property->ativo == 1): ?>
-                <td><?= $this->Number->format($property->id) ?></td>
-                <td><?= $property->has('user') ? $this->Html->link($property->user->name, ['controller' => 'Users', 'action' => 'view', $property->user->id]) : '' ?></td>
-                <td><?= h($property->kind) ?></td>
-                <td><?= h($property->cep) ?></td>
-                <td><?= h($property->state) ?></td>
-                <td><?= h($property->city) ?></td>
-                <td><?= h($property->neighborhood) ?></td>
-                <td><?= h($property->address) ?></td>
-                <td><?= $this->Number->format($property->number) ?></td>
-                <td><?= h($property->complement) ?></td>
-                <td><?= h($property->descricao) ?></td>
-                <td><?= h($property->status) ?></td>
-                <td><?= h($property->ativo) ?></td>
+                <td><img src="<?=$property->id_file['path'].$property->id_file['name']?>"></td>
+                <td><button><?= $this->Html->link(__("Eu Quero"),['controller' => 'Constracts', 'action' => 'add']) ?></button></td>
                 <td class="actions">
                     <?= $this->Html->link(__('View'), ['action' => 'view', $property->id]) ?>
                     <?= $this->Html->link(__('Edit'), ['action' => 'edit', $property->id]) ?>

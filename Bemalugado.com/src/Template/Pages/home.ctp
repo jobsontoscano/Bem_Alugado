@@ -61,7 +61,6 @@ $cakeDescription = 'CakePHP: the rapid development PHP framework';
         </fieldset>
     <?= $this->Form->button(__('Login'));?>
     <?= $this->Form->end();?>
-    <?= $this->Html->link(__('Cadastre-se'),['action' => 'add'])?>
     </div>
     </form>
     <div class="tutorial">
@@ -91,10 +90,6 @@ $cakeDescription = 'CakePHP: the rapid development PHP framework';
         $('.closebtn').on('click', function(){
             $('#myNav').css('height', '0');
         });
-
-
-
-
 
     });
 </script>

@@ -25,6 +25,7 @@ class ContractsController extends AppController
         $this->set(compact('contracts'));
         $this->set('_serialize', ['contracts']);
     }
+
     public function isAuthorized($user){
         if ($this->request->getParam('action') === 'add') {
                 return true;
@@ -63,7 +64,6 @@ class ContractsController extends AppController
      */
     public function add()
     {
-        $contract = $this->Contracts->newEntity();
         if ($this->request->is('post')) {
             $contract = $this->Contracts->patchEntity($contract, $this->request->getData());
             if ($this->Contracts->save($contract)) {
