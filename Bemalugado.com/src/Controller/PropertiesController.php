@@ -24,12 +24,13 @@ class PropertiesController extends AppController
     public function initialize(){
         parent::initialize();
         $this->loadModel('Files');
+        $this->loadModel('Wishes');
 
     }
     public function index()
     {
         $this->paginate = [
-            'contain' => ['Users', 'Contracts', 'Files']
+            'contain' => ['Users', 'Contracts', 'Files','Wishes']
         ];
         $properties = $this->paginate($this->Properties);
 

@@ -26,7 +26,7 @@ class PropertiesTable extends Table
      * @param array $config The configuration for the Table.
      * @return void
      */
-    public function initialize(array $config)
+  public function initialize(array $config)
     {
         parent::initialize($config);
 
@@ -41,6 +41,10 @@ class PropertiesTable extends Table
             'foreignKey' => 'id_propertie',
             'joinType' => 'INNER'
             ]);
+        $this->hasMany('Wishes',[
+            'foreignKey' => 'id_propertie',
+            'joinType' => 'INNER']);
+        
        // $this->hasMany('Files',[
         //    'foreignKey' => 'id_file',
          //   'joinType' => 'INNER'
@@ -75,6 +79,7 @@ class PropertiesTable extends Table
 
         $validator
             ->scalar('kind')
+            ->maxLength('kind', 40)
             ->requirePresence('kind', 'create')
             ->notEmpty('kind');
 
@@ -85,21 +90,25 @@ class PropertiesTable extends Table
 
         $validator
             ->scalar('state')
+            ->maxLength('state', 70)
             ->requirePresence('state', 'create')
             ->notEmpty('state');
 
         $validator
             ->scalar('complement')
+            ->maxLength('complement', 70)
             ->requirePresence('complement', 'create')
             ->notEmpty('complement');
 
         $validator
             ->scalar('city')
+            ->maxLength('city', 70)
             ->requirePresence('city', 'create')
             ->notEmpty('city');
 
         $validator
             ->scalar('descricao')
+            ->maxLength('descricao', 70)
             ->requirePresence('descricao', 'create')
             ->notEmpty('descricao');
 
@@ -110,16 +119,19 @@ class PropertiesTable extends Table
 
         $validator
             ->scalar('address')
+            ->maxLength('address', 70)
             ->requirePresence('address', 'create')
             ->notEmpty('address');
 
         $validator
             ->scalar('cep')
+            ->maxLength('cep', 70)
             ->requirePresence('cep', 'create')
             ->notEmpty('cep');
 
         $validator
             ->scalar('active_code')
+            ->maxLength('active_code', 70)
             ->requirePresence('active_code', 'create')
             ->notEmpty('active_code');
 
@@ -130,6 +142,7 @@ class PropertiesTable extends Table
 
         $validator
             ->scalar('neighborhood')
+            ->maxLength('neighborhood', 70)
             ->requirePresence('neighborhood', 'create')
             ->notEmpty('neighborhood');
 

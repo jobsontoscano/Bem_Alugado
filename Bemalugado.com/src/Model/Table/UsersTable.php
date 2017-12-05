@@ -34,10 +34,10 @@ class UsersTable extends Table
         $this->setDisplayField('name');
         $this->setPrimaryKey('id');
         $this->hasMany('Properties', [
-                'foreignKey' => 'id_customer_fk'
+                'foreignKey' => 'id_user_fk'
             ]);
         $this->hasMany('Constracts', [
-            'foreignKey' => 'id_customer_fk'
+            'foreignKey' => 'id_user_fk'
             ]);
     }
 

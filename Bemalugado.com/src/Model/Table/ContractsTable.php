@@ -41,6 +41,10 @@ class ContractsTable extends Table
             'foreignKey' => 'id_propertie_fk',
             'joinType' => 'INNER'
             ]);
+        $this->hasOne('Wishes', [
+            'foreignKey' => 'id_propertie',
+            'joinType' => 'INNER'
+            ]);
     }
 
     /**

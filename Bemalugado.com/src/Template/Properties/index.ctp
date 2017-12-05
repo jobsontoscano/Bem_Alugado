@@ -3,6 +3,7 @@
  * @var \App\View\AppView $this
  * @var \App\Model\Entity\Property[]|\Cake\Collection\CollectionInterface $properties
  */
+$user = $this->request->session()->read('Auth.User');
 ?>
 <nav class="large-3 medium-4 columns" id="actions-sidebar">
     <ul class="side-nav">
@@ -23,9 +24,11 @@
         <tbody>
             <?php foreach ($properties as $property): ?>
             <tr>
+            <?php $get['id_user'] = $user['id']; ?>
+            <?php $get['id_propertie'] = $property->id; ?>
                 <?php if($property->ativo == 1): ?>
                 <td><img src="<?=$property->id_file['path'].$property->id_file['name']?>"></td>
-                <td><button><?= $this->Html->link(__("Eu Quero"),['controller' => 'Constracts', 'action' => 'add']) ?></button></td>
+                <td><button><?= $this->Html->link(__("Eu Quero"),['controller' => 'Wishes', 'action' => 'add', '?' => ['id_user' => $user['id'], 'id_propertie' => $property->id]]) ?></button></td>
                 <td class="actions">
                     <?= $this->Html->link(__('View'), ['action' => 'view', $property->id]) ?>
                     <?= $this->Html->link(__('Edit'), ['action' => 'edit', $property->id]) ?>
@@ -47,3 +50,6 @@
         <p><?= $this->Paginator->counter(['format' => __('Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} total')]) ?></p>
     </div>
 </div>
+<script>
+
+</script>
