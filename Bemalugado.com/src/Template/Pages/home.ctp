@@ -49,18 +49,25 @@ $cakeDescription = 'CakePHP: the rapid development PHP framework';
 <body class="home">
 <?php $user = $this->request->session()->read('Auth.User'); ?>
 <?php if(!$user): ?>
-    <hr>
-<div class="navbar-master">
-    <div class="row navbar-home">
-      <div class="offset-md-4 col-md-5">
-        <button class="login-ajax">Login</button>
-      </div>
-      <div class="col-md-4">
-          <img src="/img/logo.png">
-      </div>
-    </div>    
-    
-</div>
+  <div class="navbar-sup">
+    <div class="row">
+
+    </div>
+    <div class="navbar-master">
+     <div class="navbar-home">
+        <div class="row">
+          <div class="col-md-offset-5 col-md-3">
+              <img src="/img/logo.png">
+          </div>
+        </div>    
+        <div class="row">
+            <ul>
+                <li><button class="login-ajax">Login</button></li>
+            </ul>
+        </div>
+     </div>
+    </div>
+  </div>
     <div id="myNav" class="login">
      <button class="closebtn">&times;</button>
          <div class="login-content">
