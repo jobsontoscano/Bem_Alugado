@@ -65,6 +65,11 @@ class WishesTable extends Table
             ->requirePresence('id_propertie', 'create')
             ->notEmpty('id_propertie');
 
+         $validator
+            ->boolean('chekin')
+            ->requirePresence('chekin', 'create')
+            ->notEmpty('chekin');
+
         return $validator;
     }
 }

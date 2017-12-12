@@ -35,7 +35,7 @@ class WishesController extends AppController
      */
     public function view($id = null)
     {
-      
+
 
         $this->set('wish', $wish);
         $this->set('_serialize', ['wish']);
@@ -47,7 +47,7 @@ class WishesController extends AppController
      * @return \Cake\Http\Response|null Redirects on successful add, renders view otherwise.
      */
     public function add()
-    {   
+    {
         $wish = $this->Wishes->newEntity();
         $id_user = $_GET['id_user'];
         $id_propertie = $_GET['id_propertie'];
@@ -57,6 +57,7 @@ class WishesController extends AppController
           $wish->id_propertie = $id_propertie;
             if ($this->Wishes->save($wish)) {
                 $this->Flash->success(__('The wish has been saved.'));
+                $wish->chekin = 0;
 
                 return $this->redirect(['controller' => 'Properties', 'action' => 'index']);
             }
