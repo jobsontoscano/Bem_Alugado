@@ -46,44 +46,45 @@ $cakeDescription = 'CakePHP: the rapid development PHP framework';
     <?= $this->Html->css('home.css') ?>
     <link href="https://fonts.googleapis.com/css?family=Raleway:500i|Roboto:300,400,700|Roboto+Mono" rel="stylesheet">
 </head>
-<div class="row">
-    <div class="col-md-4">
-        <ul>
-            <li>Xolinha</li>        
-            <li>Xolinha</li>        
-            <li>Xolinha</li>        
-            <li>xolinha</li>        
-        </ul>
-    </div>
-</div>
 <body class="home">
 <?php $user = $this->request->session()->read('Auth.User'); ?>
 <?php if(!$user): ?>
-<button class="login-ajax">Login</button>
-<div id="myNav" class="login">
- <button class="closebtn">&times;</button>
-     <div class="login-content">
-    <?= $this->Flash->render('auth');?>
-    <form action="/users/login" method="post" accept-charset="utf-8">
-        <fieldset>
-            <legend><?= (__("Por favor, entre com seu Email e Senha")) ?></legend>
-            <?= $this->Form->control('username');?>
-            <?= $this->Form->control('password');?>
-        </fieldset>
-    <?= $this->Form->button(__('Login'));?>
-    <?= $this->Form->end();?>
-    </div>
-    </form>
-    <div class="tutorial">
-        <h3>O que é Bemalugado.com</h3>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-        cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-        proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-    </div>
+    <hr>
+<div class="navbar-master">
+    <div class="row navbar-home">
+      <div class="offset-md-4 col-md-5">
+        <button class="login-ajax">Login</button>
+      </div>
+      <div class="col-md-4">
+          <img src="/img/logo.png">
+      </div>
+    </div>    
+    
 </div>
+    <div id="myNav" class="login">
+     <button class="closebtn">&times;</button>
+         <div class="login-content">
+        <?= $this->Flash->render('auth');?>
+        <form action="/users/login" method="post" accept-charset="utf-8">
+            <fieldset>
+                <legend><?= (__("Por favor, entre com seu Email e Senha")) ?></legend>
+                <?= $this->Form->control('username');?>
+                <?= $this->Form->control('password');?>
+            </fieldset>
+        <?= $this->Form->button(__('Login'));?>
+        <?= $this->Form->end();?>
+        </div>
+        </form>
+        <div class="tutorial">
+            <h3>O que é Bemalugado.com</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+            quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+            consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+            cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+            proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+        </div>
+    </div>
 <?php else: ?>
 <div class="nav-bar">
     <ul>
