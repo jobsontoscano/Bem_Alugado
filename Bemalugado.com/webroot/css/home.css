@@ -101,11 +101,19 @@ h3, h4 {
     max-width: 100%;
 }
 .navbar-home{
-    background-color: #CF510A;
+    margin: 8px 0;
     border-top: 2px solid rgba(255, 255, 255, 1);
     border-bottom: 2px solid rgba(255, 255, 255, 1);
 }
-.navbar-master
+.navbar-master{
+    margin: 10px 0;
+    border-top: 4px solid rgba(255, 255, 255, 1);
+    border-bottom: 4px solid rgba(255, 255, 255, 1);
+}
+.navbar-sup{
+    background-color: rgba(237, 102, 12, 1);
+    height: 25%;
+}
 
 .alert {
     background-color: #fff9e1;
